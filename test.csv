@@ -1,4 +1,0 @@
-Kod_stacji,Nazwa_stacji,Rok,Miesiąc,Dzień,Maksymalna_temperatura_dobowa,Status_TMAX,Minimalna_temperatura_dobowa,Status_TMIN,Średnia_temperatura_dobowa,Status_STD,Temperatura_minimalna_przy_gruncie,Status_TMNG,Suma_dobowa_opadów,Status_SMDB,Rodzaj_opadu,Wysokość_pokrywy_śnieżnej,Status_PKSN
-249180010,PSZCZYNA,2021,07,01,23.3,,15.1,,19.0,,14.2,,1.7,,W,0,9
-249180010,PSZCZYNA,2021,07,02,21.5,,13.8,,17.7,,13.7,,.4,,W,0,9
-249180010,PSZCZYNA,2021,07,03,23.8,,13.3,,18.5,,12.8,,.0,9,,0,9
