@@ -30,6 +30,8 @@ y <- diff(legionowo$Maksymalna_temperatura_dobowa)
 y <- y + abs(min(y))
 lo <- loess(y~x)
 #plot(x,y)
-hist(y, col="green", breaks=30)
+hist(y, col="green", breaks=30, xlim=c(0,20), main = "Histogram różnic temperatur", xlab='wielkość różnicy', ylab='ilość dni z daną różnicą')
 lines(predict(lo), col='red', lwd=2)
 lines(dnorm(x, mean = 11, sd = 3)*30, col='blue', lwd=2)
+
+
