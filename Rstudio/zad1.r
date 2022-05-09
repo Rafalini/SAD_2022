@@ -10,9 +10,10 @@ library (reshape2)
 theme_update(plot.title = element_text(hjust = 0.5))
 
 ## a)
-miejscowosci <- c('OLECKO', 'BRENNA', 'BORUCINO')
 df <- read.csv('k_d_07_2021.csv')
 filtered <- subset(df, Nazwa_stacji=='OLECKO' | Nazwa_stacji=='BRENNA' | Nazwa_stacji=='BORUCINO', select = c(Nazwa_stacji, Maksymalna_temperatura_dobowa, Minimalna_temperatura_dobowa))
+write.csv(filtered, 'filtered.csv', row.names = TRUE)
+filtered <- read.csv('filtered.csv')
 #1
 filtered %>% select(Nazwa_stacji,Maksymalna_temperatura_dobowa) %>% group_by(Nazwa_stacji) %>% summarize(t_max = mean(Maksymalna_temperatura_dobowa)) %>% arrange(desc(t_max))
 #2
@@ -20,7 +21,7 @@ filtered %>% select(Nazwa_stacji,Maksymalna_temperatura_dobowa,Minimalna_tempera
 #3
 filtered %>% select(Nazwa_stacji,Maksymalna_temperatura_dobowa) %>% group_by(Nazwa_stacji) %>% summarize(t_diff_avg = mean(abs(diff(Maksymalna_temperatura_dobowa)))) %>% arrange(desc(t_diff_avg))
 
-boxplot(filtered$Maksymalna_temperatura_dobowa ~ miejscowosci, col = c("#FFE0B2", "#F57C00", "#FFA726"),  xlab = "Miejscowość", ylab = "temperatura [stopnie celcjusza]")
+boxplot(filtered$Maksymalna_temperatura_dobowa ~ filtered$Nazwa_stacji, data = filtered, col = c("#FFE0B2", "#F57C00", "#FFA726"),  xlab = "Miejscowość", ylab = "temperatura [stopnie celcjusza]")
 ## b)
 
 legionowo <- df[df$Nazwa_stacji=='LEGIONOWO', ]
@@ -32,5 +33,3 @@ lo <- loess(y~x)
 hist(y, col="green", breaks=30)
 lines(predict(lo), col='red', lwd=2)
 lines(dnorm(x, mean = 11, sd = 3)*30, col='blue', lwd=2)
-
-
