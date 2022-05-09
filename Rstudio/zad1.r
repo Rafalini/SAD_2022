@@ -27,11 +27,11 @@ boxplot(filtered$Maksymalna_temperatura_dobowa ~ filtered$Nazwa_stacji, data = f
 legionowo <- df[df$Nazwa_stacji=='LEGIONOWO', ]
 x <- 1:(nrow(legionowo)-1)
 y <- diff(legionowo$Maksymalna_temperatura_dobowa)
-y <- y + abs(min(y))
-lo <- loess(y~x)
-#plot(x,y)
-hist(y, col="green", breaks=30, xlim=c(0,20), main = "Histogram różnic temperatur", xlab='wielkość różnicy', ylab='ilość dni z daną różnicą')
-lines(predict(lo), col='red', lwd=2)
-lines(dnorm(x, mean = 11, sd = 3)*30, col='blue', lwd=2)
+
+hist(y, col="green", breaks=30, xlim=c(-12,12), main = "Histogram różnic temperatur", xlab='wielkość różnicy', ylab='ilość dni z daną różnicą')
+curve(dnorm(x, mean = 0, sd = 3)*30, col='blue', lwd=2, add = TRUE)
+
+#kryterium jakości
+length(y[abs(y)<2])/length(y)
 
 
